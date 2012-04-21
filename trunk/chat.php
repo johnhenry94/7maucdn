@@ -11,12 +11,6 @@
 
 */
 
-function mk_json(){
-    
-    
-    
-}
-
 $pdo = new PDO('mysql:host=localhost;dbname=gomoku','gomoku','JKjkhsdjhJH');
 
 if(isset($_GET['msg'])){
