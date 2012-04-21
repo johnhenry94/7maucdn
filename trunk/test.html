@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>
+            var id = 1;
+            
+            function chat_refresh(){
+                
+                $.getJSON("chat.php?id="+id,function(data){
+                 
+                    $.each(data, function(id_msg, msg) {
+                     
+                if(id<parseInt(msg[0], 10)+1){id = parseInt(msg[0], 10)+1;}
+                        
+                        document.getElementById("chat").innerHTML+='<p>'+ msg[1] + '</p>';
+                        
+                    });
+                    document.getElementById("chat");
+                   setTimeout(chat_refresh, 1000);
+                    
+                });
+            
+                
+                
+                
+                
+            }
+            
+            $(document).ready(function(){
+                                
+                
+                $("#send").click(function(){
+                                       
+                    
+                   $.get("chat.php?msg="+document.getElementById('msg').value);
+                    
+                });
+                
+                chat_refresh();
+                
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="chat" style="width:300px; height: 800px; overflow-y: scroll;"></div>
+        <br/>
+        <input type="text" id="msg">
+        <input type="submit" id="send">
+    </body>
+</html>

@@ -141,7 +141,7 @@ function canvasClick(e){
 
 window.onload=function(){
     
-    // TODO Сделать изменение размера 
+    
     //document.getElementById("game").style.width=AmountX*Size+"px";
     //document.getElementById("game").style.height=AmountY*Size+"px";
     
