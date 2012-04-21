@@ -49,6 +49,28 @@ function clickCellPosition(e){
     
 }
 
+var id=1;
+
+function listenTurns(){
+    
+    $.getJSON("game.php?id="+id,function(data){
+
+        $.each(data, function(id_msg, msg) {
+
+            if(id<parseInt(msg[0], 10)+1){id = parseInt(msg[0], 10)+1;}
+
+            drawCicle(parseInt(msg[1], 10),parseInt(msg[2], 10));
+
+        });
+
+        
+        setTimeout(listenTurns, 1000);
+
+    });
+    
+    
+}
+
 function drawCicle(x, y){
     
     game.strokeStyle = 'red';
@@ -121,8 +143,8 @@ function canvasClick(e){
     x=xy[0];
     y=xy[1];
     if(x>=0 && x<AmountX && y>=0 && y<AmountY && !field[x][y]){
-        
-        if(c==0){
+        $.get("new.php?x="+x+"&y="+y);
+        /*if(c==0){
             drawCross(x, y);
             c=1;
             field[x][y]=1;
@@ -133,7 +155,7 @@ function canvasClick(e){
         }
      
         if(checkWin(c?1:-1)) alert("да ты же победил о_О");
-    
+    */
     }
     
 }
@@ -177,7 +199,9 @@ window.onload=function(){
     game.strokeStyle="#000";
     game.stroke();
     
+    listenTurns();
+    
     canvas.addEventListener("click", canvasClick, false);
-  
+      
         
 }

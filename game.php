@@ -1,5 +1,30 @@
 <?php
-$id=0;
+
+$pdo = new PDO('mysql:host=localhost;dbname=gomoku','gomoku','JKjkhsdjhJH');
+$time=time();
+while(1){
+   
+    $id = (int)$_GET['id'];
+    $sql = 'SELECT * FROM `turns` WHERE `id`>='.$id;
+
+    $msg = array();
+
+    foreach ($pdo->query($sql) as $row) 
+        $msg[] = array($row['id'], $row['x'], $row['y']);
+
+    if(isset($msg[0])) {
+        echo json_encode($msg);
+        die;    
+    }
+
+    if(time()-$time>28){echo  json_encode(array());die;};
+
+    sleep(1);
+
+
+}
+
+/*$id=0;
 $pdo = new PDO('mysql:host=localhost;dbname=gomoku','gomoku','JKjkhsdjhJH');
  $sql = 'SELECT * FROM `gomoku`.`turns` WHERE id>:id LIMIT 1';
  $query = $pdo->prepare($sql);
@@ -8,7 +33,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gomoku','gomoku','JKjkhsdjhJH');
  foreach ($query->fetchAll() as $row) {
       print $row['id'] . '<br />';
  }
-/*
+
 
 
 if(isset($_GET['new'])){
