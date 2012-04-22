@@ -59,7 +59,8 @@ function listenTurns(){
 
             if(id<parseInt(msg[0], 10)+1){id = parseInt(msg[0], 10)+1;}
 
-            drawCicle(parseInt(msg[1], 10),parseInt(msg[2], 10));
+                if(msg[3]=='1')drawCicle(parseInt(msg[1], 10),parseInt(msg[2], 10));
+                else drawCross(parseInt(msg[1], 10),parseInt(msg[2], 10));
 
         });
 
