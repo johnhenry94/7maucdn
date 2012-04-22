@@ -10,7 +10,7 @@ while(1){
     $msg = array();
 
     foreach ($pdo->query($sql) as $row) 
-        $msg[] = array($row['id'], $row['x'], $row['y']);
+        $msg[] = array($row['id'], $row['x'], $row['y'], $row['type']);
 
     if(isset($msg[0])) {
         echo json_encode($msg);
