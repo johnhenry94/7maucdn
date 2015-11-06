@@ -1,0 +1,1 @@
+Simple example how create gomoku in html5 and php
