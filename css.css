@@ -4123,7 +4123,7 @@ article {
 
     .menu-list .icon .icon-thumbnail {
         left: 18px;
-        top: 12px;
+        top: 5px;
         width: 36px;
         height: 36px;
     }
@@ -4152,6 +4152,11 @@ article {
 
     .icn.zalo {
         background-position: -50px -600px;
+        background-color: #03a5fa;
+    }
+
+    .icn.close {
+        background-position: -111px -1616px;
         background-color: #03a5fa;
     }
 /*#endregion */
