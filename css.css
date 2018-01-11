@@ -4124,8 +4124,8 @@ article {
     .menu-list .icon .icon-thumbnail {
         left: 18px;
         top: 12px;
-        width: 24px;
-        height: 24px;
+        width: 36px;
+        height: 36px;
     }
 
 .divider {
@@ -4141,4 +4141,14 @@ article {
     background-size: 100px 1500px;
     display: inline-block;
 }
+
+    .icn.facebook {
+        background-color: #4E598F;
+        background-position: 0 -600px;
+    }
+
+    .icn.zalo {
+        background-position: -50px -600px;
+        background-color: #03a5fa;
+    }
 /*#endregion */
