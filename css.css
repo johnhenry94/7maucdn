@@ -4127,4 +4127,10 @@ article {
         height: 24px;
     }
 
+.divider {
+    height: 1px;
+    background-color: #eee;
+    width: 100%;
+    margin: 8px 0;
+}
 /*#endregion */
