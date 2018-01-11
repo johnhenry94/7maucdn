@@ -4080,6 +4080,10 @@ article {
         display: none;
     }
 
+    .overlay-layer.visible .bottom-sheet {
+        display: block;
+    }
+
 
 .bottom-sheet {
     position: fixed;
