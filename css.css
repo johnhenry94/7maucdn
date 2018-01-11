@@ -4156,8 +4156,12 @@ article {
         background-color: #03a5fa;
     }
 
-    .icn.close {
+    .icn.link {
         background-position: -45px -445px;
         background-color: #009688;
+    }
+
+    .icn.close {
+        background-position: -46px -796px;
     }
 /*#endregion */
