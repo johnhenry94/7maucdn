@@ -423,6 +423,6 @@ $(document).ready(function () {
 	}
 	
 	$(document).on('click','a[class="button-share"]',function(){
-		$("#share-action-menu").show();
+		$("#share-action-menu").addClass('visible');
 	});
 });
