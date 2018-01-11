@@ -3499,20 +3499,17 @@ body {
         border-bottom: 3px solid #4285f4;
     }
 
-.big-navigation{
-    display: none;
+.navbar .siteName {
+    font-size: 30px;
+    color: #FFF !important;
+    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
 }
 
-    .big-navigation .siteName {
-        font-size: 30px;
-        margin-right: 30px;
-    }
-
-    .big-navigation .navbar-link {
-        color: #424242;
-        font-family: sans-serif;
-        margin-right: 40px;
-    }
+.big-navigation .navbar-link {
+    color: #424242;
+    font-family: sans-serif;
+    margin-right: 40px;
+}
 
 article {
     border-bottom: 1px solid #ddd;
