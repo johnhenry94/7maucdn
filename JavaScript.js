@@ -424,5 +424,12 @@ $(document).ready(function () {
 	
 	$(document).on('click','a[class="button-share"]',function(){
 		$("#share-action-menu").addClass('visible');
+		
+		console.log($(this).attr('data-href'));
+                window.FB.ui({
+                    method: "share",
+                    href: o
+                }, function (e) { })
+				
 	});
 });
