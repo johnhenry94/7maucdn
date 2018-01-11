@@ -4156,7 +4156,7 @@ article {
     }
 
     .icn.close {
-        background-position: -111px -1616px;
-        background-color: #03a5fa;
+        background: url('https://baomoi-static.zadn.vn/mobile-v2/styles/img/mobile-sprite-1.1.9.png') no-repeat -110px -1610px;
+        background-position: -110px -1610px;
     }
 /*#endregion */
