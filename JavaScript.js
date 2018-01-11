@@ -301,7 +301,7 @@ function detailsLoadMorePost(randomPosts) {
 		}
 
 		if (i == 4) {
-			html += '<center style="padding-top: 15px;"><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-8618945885313646" data-ad-slot="9417749014"></ins></center>';
+			html += '<center style="padding-top: 15px;"><ins class="adsbygoogle" style="display:inline-block;width:336px;min-height:250px" data-ad-client="ca-pub-8618945885313646" data-ad-slot="9417749014"></ins></center>';
 		}
 	}
 
