@@ -2577,7 +2577,6 @@ select[multiple].input-lg {
 
 .navbar {
     position: relative;
-    min-height: 45px;
     margin-bottom: 0px;
     border: 1px solid transparent;
 }
@@ -4094,5 +4093,38 @@ article {
     background-color: #fff;
     display: none;
 }
+
+
+.menu-list {
+    padding: 8px 0;
+    border-bottom: 1px solid hsla(0,0%,100%,.13);
+}
+
+    .menu-list .icon, .menu-list .picture {
+        padding: 12px 16px 12px 72px;
+    }
+
+    .menu-list a {
+        display: block;
+        font-size: 1.1429em;
+        line-height: 24px;
+        padding: 12px 16px;
+        color: #000;
+        text-decoration: none;
+        position: relative;
+    }
+
+    .menu-list .thumbnail {
+        position: absolute;
+        overflow: hidden;
+    }
+
+
+    .menu-list .icon .thumbnail {
+        left: 18px;
+        top: 12px;
+        width: 24px;
+        height: 24px;
+    }
 
 /*#endregion */
