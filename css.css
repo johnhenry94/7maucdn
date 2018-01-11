@@ -2577,7 +2577,7 @@ select[multiple].input-lg {
 
 .navbar {
     position: relative;
-    min-height: 50px;
+    min-height: 45px;
     margin-bottom: 0px;
     border: 1px solid transparent;
 }
@@ -2701,7 +2701,7 @@ select[multiple].input-lg {
     padding: 15px 15px;
     font-size: 18px;
     line-height: 20px;
-    height: 50px;
+    height: 45px;
 }
 
     .navbar-brand:hover,
