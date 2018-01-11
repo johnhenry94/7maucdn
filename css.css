@@ -3520,6 +3520,7 @@ body {
 
     .small-navigation .logo {
         text-align: center;
+        padding: 3px 0px;
     }
 
     .small-navigation .links a {
@@ -4156,6 +4157,6 @@ article {
     }
 
     .icn.close {
-        background: url(https://baomoi-static.zadn.vn/mobile-v2/styles/img/mobile-sprite-1.1.9.png) #FF5722 no-repeat -10px -210px;
+        background: url(https://baomoi-static.zadn.vn/mobile-v2/styles/img/mobile-sprite-1.1.9.png) #9E9E9E no-repeat -10px -210px;
     }
 /*#endregion */
