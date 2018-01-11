@@ -430,6 +430,10 @@ $(document).ready(function () {
 	$(document).on('click','a[class="button-share"]',function(){
 		$("#share-action-menu").addClass('visible');
 		$("#facebook-share-anchor").attr('data-href',$(this).attr('data-href'));
+		$("#zalo-share-anchor").attr('data-href',$(this).attr('data-href'));
+		$("#direct-link-anchor").attr('href',$(this).attr('data-href'));
+		
+		ZaloSocialSDK.reload();
 	});
 	
 	// Chia sẽ bài viết qua facebook
