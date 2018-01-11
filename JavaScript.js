@@ -445,4 +445,7 @@ $(document).ready(function () {
 			closeActionMenu();
 		});		
 	});
+	
+	// Overlay đóng action menu
+	$(".shade").on('click',function(){closeActionMenu()});
 });
