@@ -406,6 +406,10 @@ $(document).on('click', 'video', function (e) {
 	e.preventDefault();
 });
 
+function closeActionMenu(){
+	$('#share-action-menu').removeClass('visible');
+}
+
 $(document).ready(function () {
 	if (location.href.indexOf('.html') == -1) {
 		var adsClass = (getParameterByName('m') == null) ? 'desktop-ads' : 'mobile-ads';
@@ -425,11 +429,13 @@ $(document).ready(function () {
 	$(document).on('click','a[class="button-share"]',function(){
 		$("#share-action-menu").addClass('visible');
 		
-		console.log($(this).attr('data-href'));
+		
                 window.FB.ui({
                     method: "share",
-                    href: o
-                }, function (e) { })
+                    href: $(this).attr('data-href')
+                }, function (e) {
+					closeActionMenu();
+				})
 				
 	});
 });
