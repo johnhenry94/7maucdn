@@ -4098,6 +4098,7 @@ article {
 .menu-list {
     padding: 8px 0;
     border-bottom: 1px solid hsla(0,0%,100%,.13);
+    margin: 0px;
 }
 
     .menu-list .icon, .menu-list .picture {
@@ -4114,13 +4115,13 @@ article {
         position: relative;
     }
 
-    .menu-list .thumbnail {
+    .menu-list .icon-thumbnail {
         position: absolute;
         overflow: hidden;
     }
 
 
-    .menu-list .icon .thumbnail {
+    .menu-list .icon .icon-thumbnail {
         left: 18px;
         top: 12px;
         width: 24px;
@@ -4132,5 +4133,12 @@ article {
     background-color: #eee;
     width: 100%;
     margin: 8px 0;
+}
+
+.icn {
+    background-image: url(https://baomoi-static.zadn.vn/mobile-v2/styles/img/mobile-sprite-1.1.9.png);
+    vertical-align: middle;
+    background-size: 100px 1500px;
+    display: inline-block;
 }
 /*#endregion */
