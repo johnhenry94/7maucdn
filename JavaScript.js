@@ -429,6 +429,7 @@ $(document).ready(function () {
 	// Mở action menu chia sẽ bài viết
 	$(document).on('click','a[class="button-share"]',function(){
 		$("#share-action-menu").addClass('visible');
+		$("#facebook-share-anchor").attr('data-href',$(this).attr('data-href'));
 	});
 	
 	// Chia sẽ bài viết qua facebook
