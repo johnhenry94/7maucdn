@@ -426,16 +426,18 @@ $(document).ready(function () {
 		isMobile && getArticleStatistics();
 	}
 	
+	// Mở action menu chia sẽ bài viết
 	$(document).on('click','a[class="button-share"]',function(){
 		$("#share-action-menu").addClass('visible');
-		
-		
-                window.FB.ui({
-                    method: "share",
-                    href: $(this).attr('data-href')
-                }, function (e) {
-					closeActionMenu();
-				})
-				
+	});
+	
+	// Chia sẽ bài viết qua facebook
+	$("#facebook-share-anchor").on('click',function(){
+		window.FB.ui({
+			method: "share",
+			href: $(this).attr('data-href')
+		}, function (e) {
+			closeActionMenu();
+		});		
 	});
 });
