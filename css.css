@@ -4088,6 +4088,7 @@ article {
     right: 0;
     bottom: 0;
     background-color: #fff;
+    display: none;
 }
 
 /*#endregion */
