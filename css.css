@@ -3499,17 +3499,34 @@ body {
         border-bottom: 3px solid #4285f4;
     }
 
-.navbar .siteName {
-    font-size: 30px;
-    color: #FFF !important;
-    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+.big-navigation,
+.small-navigation {
+    display: none;
 }
 
-.big-navigation .navbar-link {
-    color: #424242;
-    font-family: sans-serif;
-    margin-right: 40px;
-}
+    .big-navigation .siteName {
+        font-size: 30px;
+        margin-right: 30px;
+    }
+
+    .big-navigation .navbar-link {
+        color: #424242;
+        font-family: sans-serif;
+        margin-right: 40px;
+    }
+
+    .small-navigation .siteName {
+        font-size: 30px;
+    }
+
+    .small-navigation .logo {
+        text-align: center;
+    }
+
+    .small-navigation .links a {
+        margin: 0 !important;
+        text-align: center;
+    }
 
 article {
     border-bottom: 1px solid #ddd;
@@ -3688,6 +3705,10 @@ article {
         padding: 0 0 10px;
     }
 
+    .big-navigation {
+        display: none !important;
+    }
+
     .small-navigation {
         display: block !important;
     }
@@ -3705,6 +3726,10 @@ article {
 @media (min-width: 768px) {
     .container {
         width: 750px;
+    }
+
+    .big-navigation {
+        display: block !important;
     }
 
     .small-navigation {
