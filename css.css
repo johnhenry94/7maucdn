@@ -3499,8 +3499,7 @@ body {
         border-bottom: 3px solid #4285f4;
     }
 
-.big-navigation,
-.small-navigation {
+.big-navigation{
     display: none;
 }
 
@@ -3513,19 +3512,6 @@ body {
         color: #424242;
         font-family: sans-serif;
         margin-right: 40px;
-    }
-
-    .small-navigation .siteName {
-        font-size: 30px;
-    }
-
-    .small-navigation .logo {
-        text-align: center;
-    }
-
-    .small-navigation .links a {
-        margin: 0 !important;
-        text-align: center;
     }
 
 article {
@@ -3705,10 +3691,6 @@ article {
         padding: 0 0 10px;
     }
 
-    .big-navigation {
-        display: none !important;
-    }
-
     .small-navigation {
         display: block !important;
     }
@@ -3726,10 +3708,6 @@ article {
 @media (min-width: 768px) {
     .container {
         width: 750px;
-    }
-
-    .big-navigation {
-        display: block !important;
     }
 
     .small-navigation {
