@@ -4021,16 +4021,6 @@ article {
     height: 20px;
 }
 
-.other-posts-heading {
-    background: #F9F9F9;
-    padding: 10px;
-    font-size: 20px;
-    text-align: center;
-    color: #00a1f1;
-    border-bottom: 1px solid #F5F5F5;
-}
-
-
 .loader {
     display: none;
     margin-top: 20px;
@@ -4064,6 +4054,41 @@ article {
 
 .load-more-like-box {
     padding-top: 10px;
+}
+
+/*#endregion */
+
+
+/*#region Dialog chia sẽ */
+.overlay-layer {
+    z-index: 10;
+    position: absolute;
+}
+
+    .overlay-layer.visible .shade {
+        display: block;
+    }
+
+    .overlay-layer .shade {
+        background-color: rgba(0,0,0,.5);
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: none;
+    }
+
+
+.bottom-sheet {
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    display: none;
 }
 
 /*#endregion */
