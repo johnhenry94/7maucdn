@@ -4140,6 +4140,9 @@ article {
     vertical-align: middle;
     background-size: 100px 1500px;
     display: inline-block;
+    border-radius: 3px;
+    width: 36px;
+    height: 36px;
 }
 
     .icn.facebook {
