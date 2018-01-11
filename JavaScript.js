@@ -411,12 +411,6 @@ function closeActionMenu(){
 }
 
 $(document).ready(function () {
-	if (location.href.indexOf('.html') == -1) {
-		var adsClass = (getParameterByName('m') == null) ? 'desktop-ads' : 'mobile-ads';
-		$('<div class="google-ads ' + adsClass + '"><ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-8618945885313646" data-ad-slot="9417749014"></ins></center>').insertAfter($("#id-" + ids[1]));
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	}
-
 	$(".gifplayer").videoPlayer();
 
 	// Nếu là trang chi tiết thì load liền các bìa viết ngẫu nhiên
