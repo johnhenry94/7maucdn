@@ -3533,6 +3533,12 @@ article {
     padding: 15px 0;
 }
 
+
+
+.index article:last-of-type {
+    border: 0px;
+}
+
 .title {
     margin: 0;
 }
