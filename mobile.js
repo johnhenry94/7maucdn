@@ -362,7 +362,7 @@ $(document).ready(function () {
     });
 
     // Mở action menu chia sẽ bài viết
-    $(document).on('click', 'a[class="comment-button"],a[class="post-link"]', function (e) {
+    $(document).on('click', 'a[class="comment-button"]', function (e) {
         e.preventDefault();
         openCommentDialog(this.getAttribute('href'));
     });
