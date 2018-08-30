@@ -7396,9 +7396,9 @@ main {
 
 
 .news-container article .title {
-    padding: 0px;
+    padding: 10px 0px;
     margin: 0px;
-    line-height: 22px;
+    line-height: 27px;
 }
 
 .news-container article .article-social-button-container {
