@@ -7368,7 +7368,7 @@ main {
 
 
     .news-container article {
-        border-top: 1px dashed #e8e8e8;
+        border-top: 1px dashed #F0F0F0;
         margin: 10px;
         padding-top: 10px;
     }
@@ -9076,6 +9076,11 @@ main {
         border-radius: 15px;
         padding: 5px;
     }
+
+
+.animated.slideUp {
+    display: none;
+}
 
 .animated.slideDown {
     display: block;
