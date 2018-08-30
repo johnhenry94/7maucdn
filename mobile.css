@@ -9077,11 +9077,6 @@ main {
         padding: 5px;
     }
 
-
-.animated.slideUp {
-    display: none;
-}
-
 .animated.slideDown {
     display: block;
 }
