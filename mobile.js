@@ -164,7 +164,7 @@ $(document).ready(function () {
         var differentSeconds = (new Date().getTime() - blurDate.getTime()) / 1000;
         // User focus sau 30 phút thì thông báo có bài mới
         if (differentSeconds > (60 * 30)) {
-            $("body").append("<a class='new-notification' href='http://www.tatlon.com/?m=1'><div>Có hơn 10+ bài viết mới <span class='highlight-text'>Xem</span></div></a>");
+            $("body").append("<a class='new-notification' href='http://www.7mau.vn/?m=1'><div>Có hơn 10+ bài viết mới <span class='highlight-text'>Xem</span></div></a>");
         }
     };
 
