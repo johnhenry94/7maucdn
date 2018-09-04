@@ -249,7 +249,7 @@ function requestSuggest() {
 
     var label = "news";
     if (location.href.indexOf("label/news") > 0) label = "media";
-    $.get('/feeds/posts/default/-/' + label + '?alt=json-in-script&max-results=6&callback=' + callback);
+    $.get('/feeds/posts/default/-/' + label + '?alt=json-in-script&max-results=10&callback=' + callback);
 }
 
 
