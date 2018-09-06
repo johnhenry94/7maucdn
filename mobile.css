@@ -7718,14 +7718,10 @@ main {
 }
 
 
-
-#post-content video, article video {
-    max-width: 100%;
-}
-
 #post-content video, article video {
     width: 100%;
     background: #000;
+    display: block;
 }
 
 
@@ -9136,3 +9132,15 @@ slideDown {
 .sticker-wrapper {
     height: 45px;
 }
+
+.multimedia-list article{
+    margin: 10px 0px;
+}
+
+    .multimedia-list article .snippet-thumbnail {
+        border-radius: 0px;
+    }
+    .multimedia-list article .title {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
