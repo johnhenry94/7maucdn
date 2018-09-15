@@ -7368,7 +7368,8 @@ main {
 
     .news-container article {
         border-top: 1px dashed #e8e8e8;
-        margin: 10px;
+    	margin-bottom: 10px;
+    	margin-top: 10px;
         padding-top: 10px;
     }
 
@@ -7398,6 +7399,8 @@ main {
     padding: 0px;
     margin: 0px;
     line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .news-container article .article-social-button-container {
@@ -7734,7 +7737,6 @@ main {
 }
 
 .snippet-thumbnail {
-    border-radius: 3px;
     overflow: hidden;
     background-color: #eee;
     min-height: 90px;
@@ -7903,7 +7905,7 @@ main {
                 float: initial;
                 display: table-cell;
                 list-style: none;
-                width: auto;
+            	width: 33%;
                 white-space: nowrap;
                 position: relative;
                 text-align: center;
