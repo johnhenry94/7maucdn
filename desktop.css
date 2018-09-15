@@ -8510,7 +8510,7 @@ article .view-comment-button, article .share-button {
 
 
 .media-article {
-    border-bottom: 1px solid #dddfe2;
+    border-bottom: 1px dashed #dddfe2;
     background: #FFF;
 }
 
