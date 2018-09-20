@@ -152,11 +152,13 @@ $(document).ready(function () {
             commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
             $("#current-comment").html(commentHtml);
         }
-        
-       
+
+
         requestLoadMore();
     }
 });
+
+
 
 // Chia sẽ bài viết qua facebook
 $(document).on('click', 'a[class*="share-facebook"]', function (e) {
@@ -346,8 +348,34 @@ function requestLoadMore() {
 
 function insertCommentBox(e, t) {
     $("#comment-area-" + e).html("<div class='fb-comments' data-href='" + t + "'  data-order-by='social'  data-numposts='2' data-width='100%'></div>"),
-        FB.XFBML.parse(document.getElementById("comment-area-" + e))
+        FB.XFBML.parse(document.getElementById("comment-area-" + e));
+
+
+    $.get('/feeds/posts/default/' + e + '?alt=json-in-script&callback=displayBuildinComment');
 }
+
+
+
+function displayBuildinComment(data) {
+    var id = data.entry.id.$t;
+    id = id.split('-', id.lastIndexOf('-') + 1)[2];
+
+    var content = data.entry.content.$t;
+    var thisComments = content.split("comments = ")[1];
+    thisComments = thisComments.replace("</script>", "");
+
+    thisComments = JSON.parse(thisComments);
+
+    var commentHtml = "";
+    for (var i = 0; i < thisComments.length; i++) {
+        commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+    }
+
+    commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+    $("#comment-area-" + id).append(commentHtml);
+}
+
+
 
 function getArticleStatistics() {
     if (typeof ids == 'undefined') return;
@@ -401,7 +429,7 @@ function getArticleStatistics() {
 
                                 if (eval("article" + currentIds[i] + ".totalComments") > 0) {
                                     $('#total-comments-' + currentIds[i]).addClass('has-comment');
-                                    
+
                                     document.getElementById('total-comments-' + currentIds[i]).innerHTML = (eval("article" + currentIds[i] + ".totalComments") + " Bình luận");
                                 }
                             }
