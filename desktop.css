@@ -8444,6 +8444,9 @@ header {
     display: block;
     content: "";
 }
+.fb_ltr {
+    margin: -8px;
+}
 
 .b-hbp-video {
     width: 100%;
@@ -8756,8 +8759,7 @@ article video, .content video {
 
 
 .detail .content img, .detail .content video {
-    max-height: 500px;
-    width: initial;
+    max-width: 500px;
 }
 
 .article-tool {
@@ -8785,4 +8787,17 @@ article video, .content video {
 .detail .share-facebook {
     border: 1px solid #C1C1C1;
     background: #F7F7F7;
+}
+
+.top-comments .media .media-left img {
+    width: 48px;
+    height: 48px;
+}
+.top-comments .media .media-body .name {
+    width: 48px;
+    height: 48px;
+    color: #365899;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1.358;
 }

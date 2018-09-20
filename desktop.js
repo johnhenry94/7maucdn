@@ -1,4 +1,4 @@
-﻿olderLastPublishedTime = null;
+olderLastPublishedTime = null;
 
 function soundToggle(id) {
     var video = $("#id-" + id + " video")[0];
@@ -99,10 +99,10 @@ function displayAjaxDetail(json) {
     if (category != "video") {
         afterVideoAds = "";
 
-        $("#mobile-ajax-detail").html("<h1 class='title' id='ajax-title'>" + entry.title.$t + " </h1> <div class='publish-date'> <div class='post-header'> <div class='published'>" + date.toLocaleString() + "</div> </div> </div> <div class='tool top'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i></a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> </a> </div> <div class='content' id='ajax-content'>" + entry.content.$t + "</div> <div class='tool bottom'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i> <span>zalo</span> </a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> <span>facebook</span> </a> </div><div id='ajax-fb-comment' ><div class='fb-comments'  data-href='" + url + "' data-numposts='2'></div></div>");
+        $("#mobile-ajax-detail").html("<h1 class='title' id='ajax-title'>" + entry.title.$t + " </h1> <div class='publish-date'> <div class='post-header'> <div class='published'>" + date.toLocaleString() + "</div> </div> </div> <div class='tool top'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i></a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> </a> </div> <div class='content' id='ajax-content'>" + entry.content.$t + "</div> <div class='tool bottom'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i> <span>zalo</span> </a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> <span>facebook</span> </a> </div><div id='ajax-fb-comment' ><div class='fb-comments'  data-href='" + url + "' data-numposts='2' data-order-by='social'></div></div>");
     }
     else {
-        $("#mobile-ajax-detail").html("<div class='content' id='ajax-content'>" + entry.content.$t + "</div> <h1 class='video-title' id='ajax-title'>" + entry.title.$t + " </h1> <div class='publish-date'> <div class='post-header'> <div class='published'>" + date.toLocaleString() + "</div> </div> </div><div class='tool bottom'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i> <span>zalo</span> </a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> <span>facebook</span> </a> </div><div id='ajax-fb-comment' ><div class='fb-comments'  data-href='" + url + "' data-numposts='2'></div></div>");
+        $("#mobile-ajax-detail").html("<div class='content' id='ajax-content'>" + entry.content.$t + "</div> <h1 class='video-title' id='ajax-title'>" + entry.title.$t + " </h1> <div class='publish-date'> <div class='post-header'> <div class='published'>" + date.toLocaleString() + "</div> </div> </div><div class='tool bottom'> <a class='zalo-share zalo-share-button' data-customize='true' data-href='" + url + "' data-layout='icon' data-oaid='579745863508352884' data-type='zalo' href='javascript:;' rel='nofollow'> <i class='spr spr-social-zalo'></i> <span>zalo</span> </a> <a class='fb-share' data-href='" + url + "' data-type='facebook' href='javascript:;'> <i class='spr spr-social-fb'></i> <span>facebook</span> </a> </div><div id='ajax-fb-comment' ><div class='fb-comments'  data-href='" + url + "'  data-order-by='social' data-numposts='2'></div></div>");
     }
 
 
@@ -139,6 +139,19 @@ $(document).ready(function () {
 
     getArticleStatistics();
     listLoadMore();
+
+    // Display comments
+    if (location.href.indexOf('.html') > 0) {
+        var commentHtml = "";
+        for (var i = 0; i < comments.length; i++) {
+            commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
+        }
+
+        commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+        $("#current-comment").html(commentHtml);
+       
+        requestLoadMore();
+    }
 });
 
 // Chia sẽ bài viết qua facebook
@@ -292,13 +305,13 @@ $(document).on("click touch", ".fb-share, .zalo-share", function () {
 
 //Load more trang danh sách
 function listLoadMore() {
-        allowLoadMore = true;
+    allowLoadMore = true;
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 2000 && allowLoadMore) {
-                requestLoadMore();
-            }
-        });
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() > $(document).height() - 2000 && allowLoadMore) {
+            requestLoadMore();
+        }
+    });
 
 }
 
@@ -328,18 +341,22 @@ function requestLoadMore() {
 }
 
 function insertCommentBox(e, t) {
-    $("#comment-area-" + e).html("<div class='fb-comments' data-href='" + t + "' data-numposts='2' data-width='100%'></div>"),
+    $("#comment-area-" + e).html("<div class='fb-comments' data-href='" + t + "'  data-order-by='social'  data-numposts='2' data-width='100%'></div>"),
         FB.XFBML.parse(document.getElementById("comment-area-" + e))
 }
 
 function getArticleStatistics() {
-    if (typeof (ids) != "undefined") {
+    if (typeof ids == 'undefined') return;
+
+    var currentIds = ids;
+
+    if (typeof (currentIds) != "undefined") {
         var keyIndex = [];
         var queryGraph = "https://graph.facebook.com/?ids=";
 
-        for (var i = 0; i < ids.length; i++) {
-            if ($("#id-" + ids[i] + " h3 a").length > 0) {
-                var postUrl = $("#id-" + ids[i] + " h3 a")[0].href;
+        for (var i = 0; i < currentIds.length; i++) {
+            if ($("#id-" + currentIds[i] + " h3 a").length > 0) {
+                var postUrl = $("#id-" + currentIds[i] + " h3 a")[0].href;
                 queryGraph += postUrl + ",";
                 keyIndex.push(postUrl);
             }
@@ -351,20 +368,39 @@ function getArticleStatistics() {
             type: "GET",
             success: function (data) {
                 for (var i = 0; i <= keyIndex.length - 1; i++) {
+
                     var record = data[keyIndex[i]];
                     if (typeof (record.share) != "undefined") {
-                        if (document.getElementById('total-share-' + ids[i]) != null) {
+                        if (document.getElementById('total-share-' + currentIds[i]) != null) {
                             var likeContent = (record.share.share_count == 0) ? "" : (record.share.share_count + " Chia sẽ");
                             if (likeContent != "") {
-                                $('#s-c-' + ids[i]).show();
-                                document.getElementById('total-share-' + ids[i]).innerHTML = "<a href='" + keyIndex[i] + "'>" + likeContent + "</a>";
-                                $('#total-share-' + ids[i]).addClass('has-share');
+                                $('#s-c-' + currentIds[i]).show();
+                                document.getElementById('total-share-' + currentIds[i]).innerHTML = "<a href='" + keyIndex[i] + "'>" + likeContent + "</a>";
+                                $('#total-share-' + currentIds[i]).addClass('has-share');
                             }
                         }
 
-                        if (document.getElementById('total-comments-' + ids[i]) != null && record.share.comment_count > 0) {
-                            $('#total-comments-' + ids[i]).addClass('has-comment');
-                            document.getElementById('total-comments-' + ids[i]).innerHTML = record.share.comment_count + " Bình luận";
+                        if (document.getElementById('total-comments-' + currentIds[i]) != null && record.share.comment_count > 0) {
+                            $('#total-comments-' + currentIds[i]).addClass('has-comment');
+
+                            if (eval("typeof article" + currentIds[i] + " != 'undefined'")) {
+                                if (eval("article" + currentIds[i] + ".totalComments") > 0) {
+                                    $('#total-comments-' + currentIds[i]).addClass('has-comment');
+
+                                    var totalComments = (record.share.comment_count + eval("article" + currentIds[i] + ".totalComments"));
+                                    document.getElementById('total-comments-' + currentIds[i]).innerHTML = totalComments + " Bình luận";
+                                }
+                            }
+                        }
+                        else {
+                            if (eval("typeof article" + currentIds[i] + " != 'undefined'")) {
+
+                                if (eval("article" + currentIds[i] + ".totalComments") > 0) {
+                                    $('#total-comments-' + currentIds[i]).addClass('has-comment');
+                                    
+                                    document.getElementById('total-comments-' + currentIds[i]).innerHTML = (eval("article" + currentIds[i] + ".totalComments") + " Bình luận");
+                                }
+                            }
                         }
                     }
                 }
