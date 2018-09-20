@@ -142,13 +142,17 @@ $(document).ready(function () {
 
     // Display comments
     if (location.href.indexOf('.html') > 0) {
-        var commentHtml = "";
-        for (var i = 0; i < comments.length; i++) {
-            commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
-        }
 
-        commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
-        $("#current-comment").html(commentHtml);
+        if (typeof comments != 'undefined') {
+            var commentHtml = "";
+            for (var i = 0; i < comments.length; i++) {
+                commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
+            }
+
+            commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+            $("#current-comment").html(commentHtml);
+        }
+        
        
         requestLoadMore();
     }
