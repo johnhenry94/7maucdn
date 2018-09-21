@@ -135,20 +135,8 @@ $(document).ready(function () {
         this.setAttribute('preload', 'metadata');
     });
 
-    $("a[class='post-link']").on('click', function (e) {
-        e.preventDefault();
-    });
 
-    // Chia sẽ bài viết qua facebook
-    $("#facebook-share-anchor").on('click', function () {
-        window.FB.ui({
-            method: "share",
-            href: $(this).attr('data-href')
-        }, function (e) {
-            closeShareMenu();
-        });
-    });
-
+   
 
     $("video:not([parsed='true'])").each(function () {
         assignVideoHandler(this);
@@ -417,6 +405,11 @@ $(document).ready(function () {
         e.preventDefault();
         openCommentDialog(this.getAttribute('href'), this.getAttribute('data-id'));
     });
+
+    $(document).on('click', "a[class='post-link']", function (e) {
+        e.preventDefault();
+    });
+
 
     // Overlay đóng action menu
     $(".shade").on('click', function () { closeShareMenu() });
