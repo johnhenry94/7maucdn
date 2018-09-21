@@ -8807,3 +8807,8 @@ article video, .content video {
         white-space: nowrap;
         line-height: 1.358;
     }
+
+
+.more-comments {
+    color: #365899;
+}

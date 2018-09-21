@@ -363,7 +363,7 @@ function displayBuildinComment(data) {
     id = id.split('-', id.lastIndexOf('-') + 1)[2];
 
     var content = data.entry.content.$t;
-
+    var displayComment = 3;
     var commentSlip = content.split("comments = ");
     if (commentSlip.length >= 2) {
         var thisComments = commentSlip[1];
@@ -372,19 +372,35 @@ function displayBuildinComment(data) {
         thisComments = JSON.parse(thisComments);
 
         var commentHtml = "";
+
+
         for (var i = 0; i < thisComments.length; i++) {
 
             var avatarSplit = thisComments[i].avatar.split('/');
             var userid = avatarSplit[3];
 
-            commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name'  target='_blank'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+            var hidden = "";
+            if (i > displayComment) {
+                hidden = "style='display: none;'";
+            }
+
+            commentHtml += "<div class='media comment-" + id + "' " + hidden + "><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name' target='_blank'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+        }
+        var viewMore = "";
+        if (thisComments.length > displayComment) {
+            viewMore = "<div class='clearfix'></div><a id='show-more-comments-" + id + "' href=\"javascript:showMoreComments('" + id + "')\" class='more-comments'>Xem thêm " + (thisComments.length - displayComment) + " bình luận khác</a>";
         }
 
-        commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+        commentHtml = "<div class='top-comments'>" + commentHtml + viewMore + "</div>";
         $("#comment-area-" + id).append(commentHtml);
     }
 }
 
+function showMoreComments(id) {
+    $(".comment-" + id).show();
+    $("#show-more-comments-" + id).hide();
+
+}
 
 function getArticleStatistics() {
     if (typeof ids == 'undefined') return;
