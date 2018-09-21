@@ -82,11 +82,6 @@ readDetaiTimes = 0;
 
 isDetailAjaxPage = false; // Xác định đang mở xem chi tiết = ajax
 currentState = "index";
-$(document).on('click', '#post-list a[data-id]', function (e) {
-    e.preventDefault();
-
-    openDetailDialog($(this).attr('data-id'), $(this).attr('href'));
-});
 
 // #region Chia sẽ vào mạng xã hội
 function getMetaContent(e) {
@@ -217,8 +212,8 @@ function requestLoadMore() {
         getArticleStatistics();
     });
 }
-function assignVideoHandler(element) {
 
+function assignVideoHandler(element) {
     $(element).attr('parsed', true);
     $(element).attr('loop', true);
 
@@ -282,16 +277,16 @@ function openShareMenu(url) {
     $("#direct-link-anchor").attr('href', url);
 }
 
-function openCommentDialog(url) {
+function openCommentDialog(url,id) {
     previousState = "view-comment";
     history.pushState({ event: 'view-comment', url: url }, null, "#comment");
 
     if (typeof commentDialog == 'undefined') {
-        commentDialog = $("<div class='modal' tabindex='-1' role='dialog'> <div class='modal-dialog' role='document'> <div class='modal-content'> <div class='modal-header'>  <a href='javascript:history.go(-1)' class='back-button'><i class='spr-close'></i></a> </div> <div class='modal-body'> <p>One fine body&hellip;</p> </div> </div> </div> </div>");
+        commentDialog = $("<div class='modal comments-dialog' tabindex='-1' role='dialog'> <div class='modal-dialog' role='document'> <div class='modal-content'> <div class='modal-header'>  <a href='javascript:history.go(-1)' class='back-button'><i class='spr-close'></i></a> </div> <div class='modal-body'> <p>One fine body&hellip;</p> </div> </div> </div> </div>");
         $("body").append(commentDialog);
     }
 
-    $(commentDialog).find("div[class='modal-body']").html("<div id='ajax-fb-comment' ><div class='fb-comments'  data-href='" + url + "' data-numposts='7'></div></div>")
+    $(commentDialog).find("div[class='modal-body']").html("<div id='ajax-fb-comment' ><div class='fb-comments' data-order-by='social' data-href='" + url + "' data-numposts='7'></div></div>")
 
     commentDialog.modal('show');
     FB.XFBML.parse(document.getElementById("ajax-fb-comment"));
@@ -299,15 +294,46 @@ function openCommentDialog(url) {
 
     if ($("video[playing='true']").length > 0)
         $("video[playing='true']")[0].pause();
+
+    $.get('/feeds/posts/default/' + id + '?alt=json-in-script&callback=displayBuildinComment');
+}
+
+function displayBuildinComment(data) {
+    var id = data.entry.id.$t;
+    id = id.split('-', id.lastIndexOf('-') + 1)[2];
+
+    var content = data.entry.content.$t;
+
+    var commentSlip = content.split("comments = ");
+    if (commentSlip.length >= 2) {
+        var thisComments = commentSlip[1];
+        thisComments = thisComments.replace("</script>", "");
+
+        thisComments = JSON.parse(thisComments);
+
+        var commentHtml = "";
+        for (var i = 0; i < thisComments.length; i++) {
+            commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+        }
+
+        commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+        $("#ajax-fb-comment").append(commentHtml);
+    }
 }
 
 function getArticleStatistics() {
-    if (typeof (ids) != "undefined") {
+
+    if (typeof ids == 'undefined') return;
+
+    var currentIds = ids;
+
+
+    if (typeof (currentIds) != "undefined") {
         var keyIndex = [];
         var queryGraph = "https://graph.facebook.com/?ids=";
 
-        for (var i = 0; i < ids.length; i++) {
-            var postUrl = $("#id-" + ids[i] + " a")[0].href;
+        for (var i = 0; i < currentIds.length; i++) {
+            var postUrl = $("#id-" + currentIds[i] + " a")[0].href;
             queryGraph += postUrl + ",";
             keyIndex.push(postUrl);
         }
@@ -318,20 +344,39 @@ function getArticleStatistics() {
             type: "GET",
             success: function (data) {
                 for (var i = 0; i <= keyIndex.length - 1; i++) {
+
                     var record = data[keyIndex[i]];
                     if (typeof (record.share) != "undefined") {
-
-                        if (document.getElementById('total-likes-' + ids[i]) != null) {
-                            var likeContent = (record.share.share_count == 0) ? "" : (record.share.share_count + " người thích");
+                        if (document.getElementById('total-share-' + currentIds[i]) != null) {
+                            var likeContent = (record.share.share_count == 0) ? "" : (record.share.share_count + " Chia sẽ");
                             if (likeContent != "") {
-                                $('#s-c-' + ids[i]).show();
-                                document.getElementById('total-likes-' + ids[i]).innerHTML = "<a href='" + keyIndex[i] + "'>" + likeContent + "</a>";
+                                $('#s-c-' + currentIds[i]).show();
+                                document.getElementById('total-share-' + currentIds[i]).innerHTML = "<a href='" + keyIndex[i] + "'>" + likeContent + "</a>";
+                                $('#total-share-' + currentIds[i]).addClass('has-share');
                             }
                         }
 
-                        if (document.getElementById('total-comments-' + ids[i]) != null && record.share.comment_count > 0) {
-                            $('#s-c-' + ids[i]).show();
-                            document.getElementById('total-comments-' + ids[i]).innerHTML = "<a class='comment-button' href='" + keyIndex[i] + "'>" + record.share.comment_count + " bình luận</a>";
+                        if (document.getElementById('total-comments-' + currentIds[i]) != null && record.share.comment_count > 0) {
+                            $('#total-comments-' + currentIds[i]).addClass('has-comment');
+
+                            if (eval("typeof article" + currentIds[i] + " != 'undefined'")) {
+                                if (eval("article" + currentIds[i] + ".totalComments") > 0) {
+                                    $('#total-comments-' + currentIds[i]).addClass('has-comment');
+
+                                    var totalComments = (record.share.comment_count + eval("article" + currentIds[i] + ".totalComments"));
+                                    document.getElementById('total-comments-' + currentIds[i]).innerHTML = totalComments + " Bình luận";
+                                }
+                            }
+                        }
+                        else {
+                            if (eval("typeof article" + currentIds[i] + " != 'undefined'")) {
+
+                                if (eval("article" + currentIds[i] + ".totalComments") > 0) {
+                                    $('#total-comments-' + currentIds[i]).addClass('has-comment');
+
+                                    document.getElementById('total-comments-' + currentIds[i]).innerHTML = (eval("article" + currentIds[i] + ".totalComments") + " Bình luận");
+                                }
+                            }
                         }
                     }
                 }
@@ -356,19 +401,35 @@ $(document).ready(function () {
     headroom.init();
 
     // Mở action menu chia sẽ bài viết
-    $(document).on('click', 'a[class="button-share"]', function (e) {
+    $(document).on('click', 'a[class*="button-share"]', function (e) {
         e.preventDefault();
         openShareMenu(this.getAttribute('href'));
     });
 
     // Mở action menu chia sẽ bài viết
-    $(document).on('click', 'a[class="comment-button"]', function (e) {
+    $(document).on('click', 'a[class*="comment-button"]', function (e) {
         e.preventDefault();
-        openCommentDialog(this.getAttribute('href'));
+        openCommentDialog(this.getAttribute('href'), this.getAttribute('data-id'));
     });
+
     // Overlay đóng action menu
     $(".shade").on('click', function () { closeShareMenu() });
+
+
+    // Display comments
+    if (location.href.indexOf('.html') > 0) {
+        if (typeof comments != 'undefined') {
+            var commentHtml = "";
+            for (var i = 0; i < comments.length; i++) {
+                commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
+            }
+
+            commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+            $("#current-comment").html(commentHtml);
+        }
+    }
 });
+
 
 window.onpopstate = function (event) {
     if (previousState == 'share-dialog') {
