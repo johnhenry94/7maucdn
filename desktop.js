@@ -150,7 +150,7 @@ $(document).ready(function () {
                 var avatarSplit = comments[i].avatar.split('/');
                 var userid = avatarSplit[3];
 
-                commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
+                commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name' target='_blank'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";
             }
 
             commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
@@ -377,7 +377,7 @@ function displayBuildinComment(data) {
             var avatarSplit = thisComments[i].avatar.split('/');
             var userid = avatarSplit[3];
 
-            commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+            commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name'  target='_blank'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
         }
 
         commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
