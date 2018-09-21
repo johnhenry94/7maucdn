@@ -8444,6 +8444,7 @@ header {
     display: block;
     content: "";
 }
+
 .fb_ltr {
     margin: -8px;
 }
@@ -8789,15 +8790,20 @@ article video, .content video {
     background: #F7F7F7;
 }
 
-.top-comments .media .media-left img {
-    width: 48px;
-    height: 48px;
+.top-comments {
+    padding-bottom: 12px;
 }
-.top-comments .media .media-body .name {
-    width: 48px;
-    height: 48px;
-    color: #365899;
-    font-weight: 600;
-    white-space: nowrap;
-    line-height: 1.358;
-}
+
+    .top-comments .media .media-left img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .top-comments .media .media-body .name {
+        width: 48px;
+        height: 48px;
+        color: #365899;
+        font-weight: 600;
+        white-space: nowrap;
+        line-height: 1.358;
+    }

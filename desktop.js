@@ -361,18 +361,22 @@ function displayBuildinComment(data) {
     id = id.split('-', id.lastIndexOf('-') + 1)[2];
 
     var content = data.entry.content.$t;
-    var thisComments = content.split("comments = ")[1];
-    thisComments = thisComments.replace("</script>", "");
 
-    thisComments = JSON.parse(thisComments);
+    var commentSlip = content.split("comments = ");
+    if (commentSlip.length >= 2) {
+        var thisComments = commentSlip[1];
+        thisComments = thisComments.replace("</script>", "");
 
-    var commentHtml = "";
-    for (var i = 0; i < thisComments.length; i++) {
-        commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+        thisComments = JSON.parse(thisComments);
+
+        var commentHtml = "";
+        for (var i = 0; i < thisComments.length; i++) {
+            commentHtml += "<div class='media'><div class='media-left'><img src='" + thisComments[i].avatar + "'/></div><div class='media-body'><a href='' class='name'>" + thisComments[i].name + "</a><div class='message'>" + thisComments[i].message + "</div></div></div>";
+        }
+
+        commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
+        $("#comment-area-" + id).append(commentHtml);
     }
-
-    commentHtml = "<div class='top-comments'>" + commentHtml + "</div>";
-    $("#comment-area-" + id).append(commentHtml);
 }
 
 
