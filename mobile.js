@@ -135,6 +135,10 @@ $(document).ready(function () {
         this.setAttribute('preload', 'metadata');
     });
 
+    $("a[class='post-link']").on('click', function (e) {
+        e.preventDefault();
+    });
+
     // Chia sẽ bài viết qua facebook
     $("#facebook-share-anchor").on('click', function () {
         window.FB.ui({
