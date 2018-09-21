@@ -277,7 +277,9 @@ function openShareMenu(url) {
     $("#direct-link-anchor").attr('href', url);
 }
 
-function openCommentDialog(url,id) {
+function openCommentDialog(url, id) {
+    $("#close-popup").show();
+
     previousState = "view-comment";
     history.pushState({ event: 'view-comment', url: url }, null, "#comment");
 
@@ -442,6 +444,8 @@ window.onpopstate = function (event) {
             $("video[playing='true']")[0].play();
 
         commentDialog.modal('hide');
+
+        $("#close-popup").hide();
     }
     else if (event.state != null && event.state.event == 'share-dialog') {
         openShareMenu(event.state.url);
