@@ -465,3 +465,16 @@ function getArticleStatistics() {
         });
     }
 }
+
+
+function parseAlbum(id) {
+    html = "<style> .uiScaledImageContainer{ position: relative; overflow: hidden; } .uiScaledImageContainer .scaledImageFitWidth { height: auto; min-height: initial; width: 100%; } .uiScaledImageContainer img { height: 100%; min-height: 100%; position: relative; }._2a2q { overflow: hidden; position: relative;  width: 500px; height: 500px;} ._xcx { display: block; position: absolute; } </style><div class='_2a2q'>";
+
+    var albumPosts = eval("album" + id);
+
+    $.each(albumPosts, function (i,item) {
+        html += "<div class='uiScaledImageContainer _xcx'  style='top: " + item["container"]["top"] + ";left: " + item["container"]["left"] + ";width: " + item["container"]["width"] + ";height: " + item["container"]["height"] + ";'><img  style='top: " + item["img"]["top"] + ";left: " + item["img"]["left"] + ";width: " + item["img"]["width"] + ";height: " + item["img"]["height"] + ";'  src=' " + item["src"] + "'/></div>";
+    });
+
+    document.getElementById("album" + id).innerHTML = html;
+}
