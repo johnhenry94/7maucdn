@@ -464,10 +464,11 @@ window.onpopstate = function (event) {
 function parseAlbum(id) {
 
     var max = 500;
-    var parentWith = $("#id-" + id + " .content").width();
+    var parentWith = $("#id-" + id).width();
     if (parentWith > max) {
         parentWith = max;
     }
+
     html = "<div class='album-container'>";
     var albumPosts = eval("album" + id);
 
