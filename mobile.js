@@ -460,3 +460,34 @@ window.onpopstate = function (event) {
         openCommentDialog(event.state.url);
     }
 };
+
+function parseAlbum(id) {
+
+    var max = 500;
+    var parentWith = $("#id-" + id + " .content").width();
+    if (parentWith > max) {
+        parentWith = max;
+    }
+    html = "<div class='album-container'>";
+    var albumPosts = eval("album" + id);
+
+    $.each(albumPosts, function (i, item) {
+
+        if (item.hasOwnProperty('container')) {
+
+            var containerTop = (parentWith * item["container"]["top"]) / max;
+            var containerLeft = (parentWith * item["container"]["left"]) / max;
+            var containerWidth = (parentWith * item["container"]["width"]) / max;
+            var containerHeight = (parentWith * item["container"]["height"]) / max;
+
+            var imgTop = (parentWith * item["img"]["top"]) / max;
+            var imgLeft = (parentWith * item["img"]["left"]) / max;
+            var imgWidth = (parentWith * item["img"]["width"]) / max;
+            var imgHeight = (parentWith * item["img"]["height"]) / max;
+
+            html += "<div class='album-item'  style='top: " + containerTop + "px;left: " + containerLeft + "px;width: " + containerWidth + "px;height: " + containerHeight + "px;'><img  style='top: " + imgTop + "px;left: " + imgLeft + "px;height: " + imgHeight + "px;'  width='" + imgWidth + "px' height='" + imgHeight + "px;' src=' " + item["src"] + " 'class=' " + item["imgClass"] + "'/></div>";
+        }
+    });
+    html += "</div>";
+    document.getElementById("album" + id).innerHTML = html;
+}

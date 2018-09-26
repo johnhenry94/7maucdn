@@ -468,13 +468,32 @@ function getArticleStatistics() {
 
 
 function parseAlbum(id) {
-    html = "<style> .uiScaledImageContainer{ position: relative; overflow: hidden; } .uiScaledImageContainer .scaledImageFitWidth { height: auto; min-height: initial; width: 100%; } .uiScaledImageContainer img { height: 100%; min-height: 100%; position: relative; }._2a2q { overflow: hidden; position: relative;  width: 500px; height: 500px;} ._xcx { display: block; position: absolute; } </style><div class='_2a2q'>";
 
+    var max = 500;
+    var parentWith = $("#id-" + id + " .content").width();
+    if (parentWith > max) {
+        parentWith = max;
+    }
+    html = "<div class='album-container'>";
     var albumPosts = eval("album" + id);
 
-    $.each(albumPosts, function (i,item) {
-        html += "<div class='uiScaledImageContainer _xcx'  style='top: " + item["container"]["top"] + ";left: " + item["container"]["left"] + ";width: " + item["container"]["width"] + ";height: " + item["container"]["height"] + ";'><img  style='top: " + item["img"]["top"] + ";left: " + item["img"]["left"] + ";width: " + item["img"]["width"] + ";height: " + item["img"]["height"] + ";'  src=' " + item["src"] + "'/></div>";
-    });
+    $.each(albumPosts, function (i, item) {
 
+        if (item.hasOwnProperty('container')) {
+
+            var containerTop = (parentWith * item["container"]["top"]) / max;
+            var containerLeft = (parentWith * item["container"]["left"]) / max;
+            var containerWidth = (parentWith * item["container"]["width"]) / max;
+            var containerHeight = (parentWith * item["container"]["height"]) / max;
+
+            var imgTop = (parentWith * item["img"]["top"]) / max;
+            var imgLeft = (parentWith * item["img"]["left"]) / max;
+            var imgWidth = (parentWith * item["img"]["width"]) / max;
+            var imgHeight = (parentWith * item["img"]["height"]) / max;
+
+            html += "<div class='album-item'  style='top: " + containerTop + "px;left: " + containerLeft + "px;width: " + containerWidth + "px;height: " + containerHeight + "px;'><img  style='top: " + imgTop + "px;left: " + imgLeft + "px;height: " + imgHeight + "px;'  width='" + imgWidth + "px' height='" + imgHeight + "px;' src=' " + item["src"] + " 'class=' " + item["imgClass"] + "'/></div>";
+        }
+    });
+    html += "</div>";
     document.getElementById("album" + id).innerHTML = html;
 }

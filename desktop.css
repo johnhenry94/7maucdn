@@ -8810,24 +8810,36 @@ article video, .content video {
 }
 
 /*#region Cấu trúc album ảnh */
-.uiScaledImageContainer {
+.album-item {
     position: relative;
     overflow: hidden;
+    display: block;
+    position: absolute;
 }
 
-    .uiScaledImageContainer .scaledImageFitWidth {
+    .album-item:after {
+        border: 1px solid rgba(0, 0, 0, .1);
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .album-item .fit {
         height: auto;
         min-height: initial;
         width: 100%;
     }
 
-    .uiScaledImageContainer img {
+    .album-item img {
         height: 100%;
         min-height: 100%;
         position: relative;
     }
 
-._2a2q {
+.album-container {
     overflow: hidden;
     position: relative;
     width: 500px;
@@ -8835,8 +8847,5 @@ article video, .content video {
     margin: 0px auto;
 }
 
-._xcx {
-    display: block;
-    position: absolute;
-}
+
 /*#endregion */
