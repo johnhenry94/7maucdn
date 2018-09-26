@@ -425,8 +425,7 @@ $(document).ready(function () {
         if (typeof comments != 'undefined') {
             var commentHtml = "";
             for (var i = 0; i < comments.length; i++) {
-
-                var avatarSplit = thisComments[i].avatar.split('/');
+                var avatarSplit = comments[i].avatar.split('/');
                 var userid = avatarSplit[3];
 
                 commentHtml += "<div class='media'><div class='media-left'><img src='" + comments[i].avatar + "'/></div><div class='media-body'><a href='https://www.facebook.com/" + userid + "' class='name' target='_blank'>" + comments[i].name + "</a><div class='message'>" + comments[i].message + "</div></div></div>";

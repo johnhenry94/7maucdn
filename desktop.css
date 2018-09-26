@@ -8668,6 +8668,7 @@ slideDown {
 
 article video, .content video {
     max-height: 500px;
+    width: 500px;
     background: #F7f7f7;
 }
 
@@ -8847,5 +8848,28 @@ article video, .content video {
     margin: 0px auto;
 }
 
+.albummore1 {
+    background-color: rgba(0, 0, 0, .4);
+    bottom: 0;
+    color: #fff;
+    font-size: 35px;
+    font-weight: normal;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.albummore12 {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.albummore123 {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
 
 /*#endregion */

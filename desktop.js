@@ -477,8 +477,21 @@ function parseAlbum(id) {
     html = "<div class='album-container' style='height: " + parentWith + "px;width: " + parentWith + "px;'>";
     var albumPosts = eval("album" + id);
 
-    $.each(albumPosts, function (i, item) {
+    // Tìm vị trí item được hiển thị cuối cùng
+    var hiddenIndex = -1;
+    var hiddenItemCount = 0; // Số lượng ảnh còn trong ALbum
 
+    $.each(albumPosts, function (i, item) {
+        if (item.hasOwnProperty('container') == false) {
+            if (hiddenIndex == -1) {
+                hiddenIndex = (i - 1);
+            }
+
+            hiddenItemCount++;
+        }
+    });
+
+    $.each(albumPosts, function (i, item) {
         if (item.hasOwnProperty('container')) {
 
             var containerTop = (parentWith * item["container"]["top"]) / max;
@@ -491,9 +504,16 @@ function parseAlbum(id) {
             var imgWidth = (parentWith * item["img"]["width"]) / max;
             var imgHeight = (parentWith * item["img"]["height"]) / max;
 
-            html += "<div class='album-item'  style='top: " + containerTop + "px;left: " + containerLeft + "px;width: " + containerWidth + "px;height: " + containerHeight + "px;'><img  style='top: " + imgTop + "px;left: " + imgLeft + "px;height: " + imgHeight + "px;'  width='" + imgWidth + "px' height='" + imgHeight + "px;' src=' " + item["src"] + " 'class=' " + item["imgClass"] + "'/></div>";
+            var anchorToViewAlbum = "";
+            // Hiển thị nút xem toàn bộ Album
+            if (hiddenIndex == i) {
+                anchorToViewAlbum = "<div class='albummore1'><div class='albummore12'><div class='albummore123'>+" + hiddenItemCount + "</div></div></div>";
+            }
+
+            html += "<div class='album-item'  style='top: " + containerTop + "px;left: " + containerLeft + "px;width: " + containerWidth + "px;height: " + containerHeight + "px;'><img  style='top: " + imgTop + "px;left: " + imgLeft + "px;height: " + imgHeight + "px;'  width='" + imgWidth + "px' height='" + imgHeight + "px;' src=' " + item["src"] + " 'class=' " + item["imgClass"] + "'/>" + anchorToViewAlbum + "</div>";
         }
     });
     html += "</div>";
+
     document.getElementById("album" + id).innerHTML = html;
 }
