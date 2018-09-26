@@ -474,7 +474,7 @@ function parseAlbum(id) {
     if (parentWith > max) {
         parentWith = max;
     }
-    html = "<div class='album-container'>";
+    html = "<div class='album-container' style='height: " + parentWith + "px;width: " + parentWith + "px;'>";
     var albumPosts = eval("album" + id);
 
     $.each(albumPosts, function (i, item) {

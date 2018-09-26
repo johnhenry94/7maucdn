@@ -9700,8 +9700,6 @@ slideDown {
 .album-container {
     overflow: hidden;
     position: relative;
-    width: 500px;
-    height: 500px;
     margin: 0px auto;
 }
 
